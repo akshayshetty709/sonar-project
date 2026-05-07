@@ -1,0 +1,7 @@
+# Download (Update the version number if necessary)
+wget https://github.com/goharbor/harbor/releases/download/v2.10.0/harbor-offline-installer-v2.10.0.tgz
+
+# Extract the package
+tar -xvzf harbor-offline-installer-v2.10.0.tgz
+cd harbor
+cp harbor.yml.tmpl harbor.yml
