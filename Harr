@@ -1,0 +1,12 @@
+        stage('Login to Harbor') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'harbor-credentials', 
+                                                 passwordVariable: 'HARBOR_PW', 
+                                                 usernameVariable: 'HARBOR_USER')]) {
+                    // Use single quotes (''') to avoid syntax and masking warnings
+                    sh '''
+                    echo "$HARBOR_PW" | docker login 3.108.10.185 -u "$HARBOR_USER" --password-stdin
+                    '''
+                }
+            }
+        }
