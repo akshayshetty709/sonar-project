@@ -5,3 +5,4 @@ wget https://github.com/goharbor/harbor/releases/download/v2.10.0/harbor-offline
 tar -xvzf harbor-offline-installer-v2.10.0.tgz
 cd harbor
 cp harbor.yml.tmpl harbor.yml
+sudo du -sh /* 2>/dev/null
