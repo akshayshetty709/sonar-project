@@ -1,0 +1,8 @@
+pactl set-card-profile bluez_card.41_42_D0_16_00_C1 a2dp-sink
+pactl set-default-sink bluez_output.41_42_D0_16_00_C1.1
+
+pactl set-sink-mute bluez_output.41_42_D0_16_00_C1.1 0
+pactl set-sink-volume bluez_output.41_42_D0_16_00_C1.1 100%
+speaker-test -t wav -c 2
+systemctl --user restart pipewire pipewire-pulse wireplumber
+bluetoothctl connect 41:42:D0:16:00:C1
