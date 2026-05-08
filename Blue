@@ -1,0 +1,5 @@
+bluetoothctl connect 41:42:D0:16:00:C1
+pactl set-card-profile bluez_card.41_42_D0_16_00_C1 headset-head-unit
+pactl set-default-sink bluez_sink.41_42_D0_16_00_C1.headset_head_unit
+pactl set-default-source bluez_sopactl list cards | grep -A3 "blue"urce.41_42_D0_16_00_C1.headset_head_unit
+pactl list cards | grep -A3 "blue"
