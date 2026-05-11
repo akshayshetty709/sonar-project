@@ -1,0 +1,3 @@
+pactl set-card-profile bluez_card.41_42_D0_16_00_C1 a2dp-sink
+pactl set-default-sink bluez_output.41_42_D0_16_00_C1.1
+pavucontrol
