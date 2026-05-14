@@ -52,3 +52,38 @@ aws autoscaling describe-scaling-activities \
   --region ap-south-1 \
   --query 'Activities[0].{Status:StatusCode,Cause:Cause,Description:Description,StatusMessage:StatusMessage}' \
   --output json
+
+spec:
+  docker:
+    insecureRegistries:
+      - "13.207.26.205:80"
+  # OR if using containerd
+  containerd:
+    registryConfigs:
+      13.207.26.205:80:
+        insecure: true
+
+kops update cluster ${NAME} --yes
+kops rolling-update cluster ${NAME} --yes
+
+kubectl create secret docker-registry harbor-creds \
+  --docker-server=13.207.26.205:80 \
+  --docker-username=<your-harbor-user> \
+  --docker-password=<your-harbor-password>
+
+    spec:
+      containers:
+      - name: api-gateway
+        image: 13.207.26.205:80/my-project/gatewayservice:latest
+      imagePullSecrets:
+      - name: harbor-creds
+    ```
+
+---
+
+### Summary Checklist
+*   **Networking:** Ensure the Security Group for your Harbor server allows inbound traffic on port 80 from your kOps VPC.
+*   **Protocol:** Use the `insecureRegistries` setting in kOps because you aren't using an SSL certificate for Harbor.
+*   **Auth:** Ensure the `imagePullSecrets` are present in your deployment manifest.
+
+Since you are running this in a professional DevOps context, would you like the specific `containerd` configuration syntax for newer kOps versions?
