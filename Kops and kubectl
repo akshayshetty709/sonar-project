@@ -30,3 +30,19 @@ aws ec2 describe-instances \
 
 
 kops validate cluster --wait 20m
+aws autoscaling describe-auto-scaling-groups \
+  --region ap-south-1 \
+  --query 'AutoScalingGroups[?contains(AutoScalingGroupName,`mycluster`)].{Name:AutoScalingGroupName,Desired:DesiredCapacity}' \
+  --output table
+
+aws autoscaling describe-scaling-activities \
+  --region ap-south-1 \
+  --query 'Activities[0:3].{Status:StatusCode,Cause:Cause}' \
+  --output table
+
+
+aws service-quotas get-service-quota \
+  --service-code ec2 \
+  --quota-code L-1216C47A \
+  --region ap-south-1 \
+  --query 'Quota.Value'
