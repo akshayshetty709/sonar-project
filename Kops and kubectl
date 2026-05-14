@@ -108,6 +108,12 @@ sudo sed -i 's|\[plugins."io.containerd.grpc.v1.cri".registry\]|\[plugins."io.co
 sudo systemctl restart containerd
 sudo systemctl status containerd
 
+sudo sed -i 's|config_path = ""|config_path = "/etc/containerd/certs.d"|' /etc/containerd/config.toml
+
 sudo crictl pull 13.207.26.205:80/my-project/gatewayservice:latest
 
 sudo containerd config default | sudo tee /etc/containerd/config.toml
+grep "config_path" /etc/containerd/config.toml
+
+
+config_path = "/etc/containerd/certs.d"
