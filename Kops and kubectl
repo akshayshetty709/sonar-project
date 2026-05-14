@@ -1,0 +1,13 @@
+# Download kops
+curl -Lo kops https://github.com/kubernetes/kops/releases/download/v1.28.0/kops-linux-amd64
+
+# Make it executable and move to PATH
+chmod +x kops
+sudo mv kops /usr/local/bin/kops
+
+# Verify installation
+kops version
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/kubectl
