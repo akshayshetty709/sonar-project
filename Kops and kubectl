@@ -87,3 +87,25 @@ kubectl create secret docker-registry harbor-creds \
 *   **Auth:** Ensure the `imagePullSecrets` are present in your deployment manifest.
 
 Since you are running this in a professional DevOps context, would you like the specific `containerd` configuration syntax for newer kOps versions?
+
+# Create the directory
+sudo mkdir -p /etc/containerd/certs.d/13.207.26.205:80
+
+# Create hosts.toml file
+sudo tee /etc/containerd/certs.d/13.207.26.205:80/hosts.toml <<EOF
+server = "http://13.207.26.205:80"
+
+[host."http://13.207.26.205:80"]
+  capabilities = ["pull", "resolve"]
+  skip_verify = true
+EOF
+
+sudo grep -i "config_path" /etc/containerd/config.toml
+
+sudo sed -i 's|\[plugins."io.containerd.grpc.v1.cri".registry\]|\[plugins."io.containerd.grpc.v1.cri".registry\]\n  config_path = "/etc/containerd/certs.d"|' /etc/containerd/config.toml
+
+
+sudo systemctl restart containerd
+sudo systemctl status containerd
+
+sudo crictl pull 13.207.26.205:80/my-project/gatewayservice:latest
