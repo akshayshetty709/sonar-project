@@ -117,3 +117,5 @@ grep "config_path" /etc/containerd/config.toml
 
 
 config_path = "/etc/containerd/certs.d"
+
+sudo sed -i "s|config_path = '/etc/containerd/certs.d:/etc/docker/certs.d'|config_path = '/etc/containerd/certs.d'|" /etc/containerd/config.toml
