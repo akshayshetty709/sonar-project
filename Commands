@@ -1,7 +1,11 @@
 ssh -i ~/.ssh/id_rsa ubuntu@<worker-node-1-ip>
 sudo mkdir -p /etc/containerd/certs.d/13.200.12.217
 sudo nano /etc/containerd/certs.d/13.200.12.217/hosts.toml
+server = "http://13.200.12.217"
 
+[host."http://13.200.12.217"]
+  capabilities = ["pull", "resolve"]
+  skip_verify = true
 
 sudo systemctl restart containerd
 exit
