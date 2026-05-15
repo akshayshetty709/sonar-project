@@ -4,3 +4,12 @@ Normal   Scheduled  64s                default-scheduler  Successfully assigned 
   Warning  Failed     26s (x3 over 63s)  kubelet            spec.containers{api-gateway}: Error: ErrImagePull
   Normal   BackOff    11s (x3 over 63s)  kubelet            spec.containers{api-gateway}: Back-off pulling image "13.200.12.217/gateway/gateway-service:latest"
   Warning  Failed     11s (x3 over 63s)  kubelet            spec.containers{api-gateway}: Error: ImagePullBackOff
+
+
+
+
+[plugins."io.containerd.grpc.v1.cri".registry.mirrors."13.200.12.217"]
+  endpoint = ["http://13.200.12.217"]
+
+[plugins."io.containerd.grpc.v1.cri".registry.configs."13.200.12.217".tls]
+  insecure_skip_verify = true
