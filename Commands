@@ -1,0 +1,7 @@
+ssh -i ~/.ssh/id_rsa ubuntu@<worker-node-1-ip>
+sudo mkdir -p /etc/containerd/certs.d/13.200.12.217
+sudo nano /etc/containerd/certs.d/13.200.12.217/hosts.toml
+
+
+sudo systemctl restart containerd
+exit
