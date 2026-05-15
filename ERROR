@@ -1,8 +1,6 @@
- Type     Reason     Age                From               Message
-  ----     ------     ----               ----               -------
-  Normal   Scheduled  39s                default-scheduler  Successfully assigned default/api-gateway-7d54bf5dcf-vj4qj to i-004f5a577c3bef326
-  Normal   Pulling    24s (x2 over 39s)  kubelet            spec.containers{api-gateway}: Pulling image "13.200.12.217/gateway/gateway-service:latest"
-  Warning  Failed     24s (x2 over 39s)  kubelet            spec.containers{api-gateway}: Failed to pull image "13.200.12.217/gateway/gateway-service:latest": failed to pull and unpack image "13.200.12.217/gateway/gateway-service:latest": failed to resolve reference "13.200.12.217/gateway/gateway-service:latest": failed to do request: Head "https://13.200.12.217/v2/gateway/gateway-service/manifests/latest": dial tcp 13.200.12.217:443: connect: connection refused
-  Warning  Failed     24s (x2 over 39s)  kubelet            spec.containers{api-gateway}: Error: ErrImagePull
-  Normal   BackOff    10s (x2 over 38s)  kubelet            spec.containers{api-gateway}: Back-off pulling image "13.200.12.217/gateway/gateway-service:latest"
-  Warning  Failed     10s (x2 over 38s)  kubelet            spec.containers{api-gateway}: Error: ImagePullBackOff
+Normal   Scheduled  64s                default-scheduler  Successfully assigned default/api-gateway-75858fb4f4-frsdk to i-004f5a577c3bef326
+  Normal   Pulling    26s (x3 over 63s)  kubelet            spec.containers{api-gateway}: Pulling image "13.200.12.217/gateway/gateway-service:latest"
+  Warning  Failed     26s (x3 over 63s)  kubelet            spec.containers{api-gateway}: Failed to pull image "13.200.12.217/gateway/gateway-service:latest": failed to pull and unpack image "13.200.12.217/gateway/gateway-service:latest": failed to resolve reference "13.200.12.217/gateway/gateway-service:latest": failed to do request: Head "https://13.200.12.217/v2/gateway/gateway-service/manifests/latest": dial tcp 13.200.12.217:443: connect: connection refused
+  Warning  Failed     26s (x3 over 63s)  kubelet            spec.containers{api-gateway}: Error: ErrImagePull
+  Normal   BackOff    11s (x3 over 63s)  kubelet            spec.containers{api-gateway}: Back-off pulling image "13.200.12.217/gateway/gateway-service:latest"
+  Warning  Failed     11s (x3 over 63s)  kubelet            spec.containers{api-gateway}: Error: ImagePullBackOff
