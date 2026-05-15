@@ -52,3 +52,8 @@ spec:
         hostPath:
           path: /etc
 EOF
+
+# Delete old ones first
+kubectl delete daemonset configure-containerd -n kube-system
+kubectl delete daemonset fix-containerd -n kube-system
+
