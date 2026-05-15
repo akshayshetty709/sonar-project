@@ -1,0 +1,3 @@
+echo 'export KOPS_STATE_STORE=s3://kops-demo-bucket11' >> ~/.bashrc
+echo 'export NAME=mycluster.k8s.local' >> ~/.bashrc
+echo 'export AWS_REGION=ap-south-1' >> ~/.bashrc
