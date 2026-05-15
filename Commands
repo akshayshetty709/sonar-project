@@ -9,3 +9,7 @@ server = "http://13.200.12.217"
 
 sudo systemctl restart containerd
 exit
+
+
+kubectl get pods -n kube-system | grep configure-containerd
+kubectl logs -n kube-system <pod-name> -c configure
