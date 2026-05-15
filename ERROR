@@ -13,3 +13,4 @@ Normal   Scheduled  64s                default-scheduler  Successfully assigned 
 
 [plugins."io.containerd.grpc.v1.cri".registry.configs."13.200.12.217".tls]
   insecure_skip_verify = true
+curl -I http://13.200.12.217/v2/gateway/gateway-service/manifests/latest
