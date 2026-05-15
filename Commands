@@ -13,3 +13,42 @@ exit
 
 kubectl get pods -n kube-system | grep configure-containerd
 kubectl logs -n kube-system <pod-name> -c configure
+kubectl apply -f - <<'EOF'
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fix-containerd
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      name: fix-containerd
+  template:
+    metadata:
+      labels:
+        name: fix-containerd
+    spec:
+      hostPID: true
+      tolerations:
+      - operator: Exists
+      containers:
+      - name: fix
+        image: ubuntu
+        securityContext:
+          privileged: true
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          echo "=== containerd config ===" 
+          cat /host/etc/containerd/config.toml
+          echo "=== hosts.toml ===" 
+          cat /host/etc/containerd/certs.d/13.200.12.217/hosts.toml 2>/dev/null || echo "FILE NOT FOUND"
+          sleep 3600
+        volumeMounts:
+        - name: host-etc
+          mountPath: /host/etc
+      volumes:
+      - name: host-etc
+        hostPath:
+          path: /etc
+EOF
